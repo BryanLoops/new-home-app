@@ -1,0 +1,105 @@
+import { useState } from "react";
+import { View, TextInput, Button, StyleSheet } from "react-native";
+
+
+function ProductInput(props) {
+  const [enteredProductData, setEnteredProductData] = useState({
+    name: "",
+    brand: "",
+    quantity: "",
+    value: "",
+  });
+
+  const [productName, setProductName] = useState("");
+  const [productBrand, setProductBrand] = useState("");
+  const [productQuantity, setProductQuantity] = useState("");
+  const [productValue, setProductValue] = useState("");
+
+  function nameInputHandler(text) {
+    setProductName(text);
+  }
+
+  function brandInputHandler(text) {
+    setProductBrand(text);
+  }
+
+  function quantityInputHandler(text) {
+
+    const numericValue = text.replace(/[^0-9]/g, "");
+    
+    setProductQuantity(numericValue);
+  }
+
+  function valueInputHandler(text) {
+
+    const numericValue = text.replace(/[^0-9,.]/g, "");
+    setProductValue(numericValue);
+  }
+
+  async function addProductHandler() {
+
+    setEnteredProductData((prevData) => ({
+      ...prevData,
+      name: productName,
+      brand: productBrand,
+      quantity: productQuantity,
+      value: productValue
+    }));
+
+    console.log(enteredProductData);
+    props.onAddProduct(enteredProductData);
+    setEnteredProductData({ name: "", brand: "", quantity: "", value: "" });
+  }
+
+  return (
+    <View style={styles.inputContainer}>
+      <View style={{ flex: 1, flexDirection: "column" }}>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Nome"
+          onChangeText={nameInputHandler}
+          value={productName}
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Marca"
+          onChangeText={brandInputHandler}
+          value={productBrand}
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Quantidade"
+          onChangeText={quantityInputHandler}
+          keyboardType="numeric"
+          value={productQuantity}
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Valor unitário"
+          onChangeText={valueInputHandler}
+          keyboardType="numeric"
+          value={productValue}
+        />
+      </View>
+      <Button title="Adicionar" onPress={addProductHandler} />
+    </View>
+  );
+}
+
+export default ProductInput;
+
+const styles = StyleSheet.create({
+  inputContainer: {
+    flex: 2,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  textInput: {
+    borderWidth: 1,
+    borderColor: "#cccccc",
+    width: "80%",
+    marginBottom: 8,
+    padding: 8,
+  },
+});
