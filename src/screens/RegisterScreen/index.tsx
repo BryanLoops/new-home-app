@@ -7,10 +7,10 @@ import {
 import 'react-native-get-random-values';
 import { v4 as UUID } from 'uuid';
 
-import ProductItem from './components/ProductItem';
-import ProductInput from './components/ProductInput';
+import ProductItem from '../../components/ProductItem';
+import ProductInput from '../../components/ProductInput';
 
-export default function App() {
+export default function RegisterScreen() {
 
   const [products, setProducts] = useState([]);
 
@@ -20,13 +20,15 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
+      <View style={styles.inputContainer}>
       <ProductInput onAddProduct={addProductHandler} />
+      </View>
       <View style={styles.goalsContainer}>
         <FlatList
           data={products}
           renderItem={(itemData) => {
             return (
-              <ProductItem text={itemData.item.name} />
+              <ProductItem text={itemData.item} />
             );
           }}
           
@@ -39,10 +41,18 @@ export default function App() {
 const styles = StyleSheet.create({
   appContainer: {
     flex: 1,
-    paddingTop: 50,
-    paddingHorizontal: 16,
+    paddingHorizontal: 8,
+  },
+  inputContainer: {
+    flex:2,
+    paddingTop: 16,
+    paddingBottom: 8,
+    paddingHorizontal: 8
   },
   goalsContainer: {
-    flex: 5,
+    flex: 4,
+    borderColor: '#cccccc',
+    borderWidth: 2,
+    borderRadius: 8
   },
 });
