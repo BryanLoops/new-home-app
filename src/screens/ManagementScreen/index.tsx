@@ -1,38 +1,53 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { useState } from 'react';
+import {
+  TextInput,
+  StyleSheet,
+  Text,
+  View,
+  FlatList
+} from 'react-native';
+import 'react-native-get-random-values';
 import { v4 as UUID } from 'uuid';
 
 import ProductItem from '../../components/ProductItem';
-import ProductInput from '../../components/ProductInput';
+import PrimaryButton from '../../components/PrimaryButton';
 
-interface ProductData {
-  id: string;
-  text: string;
-}
+export default function ManagementScreen() {
 
-const RegisterScreen: React.FC = () => {
-  const [products, setProducts] = useState<ProductData[]>([]);
+  const [products, setProducts] = useState([]);
 
-  const addProductHandler = (enteredProductData: string) => {
-    const newProduct: ProductData = { id: UUID(), text: enteredProductData };
-    setProducts(currentProducts => [...currentProducts, newProduct]);
+  function addProductHandler(enteredProductData) {
+    setProducts(currentProducts => [...currentProducts, enteredProductData]);
   };
 
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
-        <ProductInput onAddProduct={addProductHandler} />
+      <Text>Descritor para busca</Text>
+      <TextInput
+          style={styles.textInput}
+          placeholder="Valor unitário"
+          keyboardType="numeric"
+        />
+      <View style={styles.buttonContainer}>
+
+      <PrimaryButton title={"Buscar"} onPress={console.log("Apertou")}/>
+      </View>
       </View>
       <View style={styles.goalsContainer}>
         <FlatList
           data={products}
-          renderItem={itemData => <ProductItem text={itemData.item.text} />}
-          keyExtractor={item => item.id}
+          renderItem={(itemData) => {
+            return (
+              <ProductItem text={itemData.item} />
+            );
+          }}
+          
         />
       </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   appContainer: {
@@ -40,17 +55,28 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   inputContainer: {
-    flex: 2,
+    flex:2,
     paddingTop: 16,
     paddingBottom: 8,
-    paddingHorizontal: 8,
+    paddingHorizontal: 8
   },
   goalsContainer: {
     flex: 4,
     borderColor: '#cccccc',
     borderWidth: 2,
-    borderRadius: 8,
+    borderRadius: 8
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  textInput: {
+    borderWidth: 1,
+    borderColor: "#606060",
+    width: "auto",
+    marginBottom: 8,
+    padding: 8,
   },
 });
-
-export default RegisterScreen;

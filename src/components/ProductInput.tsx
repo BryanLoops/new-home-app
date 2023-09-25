@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { View, TextInput, Text, TouchableOpacity, Modal, Button, StyleSheet } from "react-native";
-import CustomButton from "./CustomButton";
+import PrimaryButton from "./PrimaryButton";
 
 
 function ProductInput(props) {
@@ -64,7 +64,15 @@ function ProductInput(props) {
 
   return (
     <View style={styles.inputContainer}>
-      <View style={{ flex: 1, flexDirection: "column" }}>
+      <View style={{ flex: 1, flexDirection: "row" }}>
+        <View style={{flexDirection: "column"}}>
+          <Text style={{ margin: 8, padding: 8, fontSize: 16}}>Nome: </Text>
+          <Text style={{ margin: 8, padding: 8, fontSize: 16}}>Marca: </Text>
+          <Text style={{ margin: 8, padding: 8, fontSize: 16}}>Quantidade: </Text>
+          <Text style={{ margin: 8, padding: 8, fontSize: 16}}>Valor: </Text>
+        </View>
+        <View style={{flexDirection: "column"}}>
+
         <TextInput
           style={styles.textInput}
           placeholder="Nome"
@@ -91,6 +99,7 @@ function ProductInput(props) {
           keyboardType="numeric"
           value={productValue}
         />
+        </View>
       </View>
       <Modal
         animationType="slide"
@@ -100,11 +109,11 @@ function ProductInput(props) {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text>This is a centered modal!</Text>
+            <Text>Confirmar registro?</Text>
             <View style={[styles.buttonContainer, {width: 240}]}>
-              <CustomButton title="Confirmar" onPress={addProductHandler} />
-              <CustomButton title="Cancelar" onPress={() => {
-                // Perform confirm action here
+              <PrimaryButton title="Confirmar" onPress={addProductHandler} />
+              <PrimaryButton title="Cancelar" onPress={() => {
+                // Adicionar lógica de registro
                 setModalVisible(false)
               }} />
             </View>
@@ -112,7 +121,7 @@ function ProductInput(props) {
         </View>
       </Modal>
       <View style={styles.buttonContainer}>
-        <CustomButton title="Adicionar" onPress={setModal} />
+        <PrimaryButton title="Adicionar" onPress={setModal} />
       </View>
     </View>
   );
@@ -122,15 +131,14 @@ export default ProductInput;
 
 const styles = StyleSheet.create({
   inputContainer: {
-    flex: 2,
-    flexDirection: "row",
+    flex: 1,
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: 'center',
   },
   textInput: {
     borderWidth: 1,
-    borderColor: "#cccccc",
-    width: "96%",
+    borderColor: "#606060",
+    width: 220,
     marginBottom: 8,
     padding: 8,
   },
@@ -153,7 +161,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   buttonContainer: {
-    width: 120,
-    flexDirection: "row",
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
+    flexDirection: 'row',
   },
 });

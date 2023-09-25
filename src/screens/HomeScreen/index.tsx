@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Button, StyleSheet } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 
-import CustomButton from '../../components/CustomButton';
+import CustomButton from '../../components/PrimaryButton';
 
 
 type RootStackParamList = {
@@ -24,8 +24,6 @@ export default function HomeScreen() {
   };
 
   return (
-    
-
     <View style={styles.container}>
       <CustomButton title="Register" onPress={navigateToRegister} />
       <CustomButton title="Management" onPress={navigateToManagement} />
@@ -37,7 +35,8 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
+    flexDirection: 'row',
   },
 });

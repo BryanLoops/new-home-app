@@ -23,17 +23,6 @@ export default function RegisterScreen() {
       <View style={styles.inputContainer}>
       <ProductInput onAddProduct={addProductHandler} />
       </View>
-      <View style={styles.goalsContainer}>
-        <FlatList
-          data={products}
-          renderItem={(itemData) => {
-            return (
-              <ProductItem text={itemData.item} />
-            );
-          }}
-          
-        />
-      </View>
     </View>
   );
 }
