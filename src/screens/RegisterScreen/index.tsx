@@ -2,9 +2,11 @@ import { useState } from 'react';
 import {
   StyleSheet,
   View,
-  FlatList
+  FlatList,
+  Platform
 } from 'react-native';
 import 'react-native-get-random-values';
+import * as SQLite from 'expo-sqlite';
 import { v4 as UUID } from 'uuid';
 
 import ProductInput from '../../components/ProductInput';
