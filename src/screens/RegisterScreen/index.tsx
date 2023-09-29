@@ -7,7 +7,6 @@ import {
 import 'react-native-get-random-values';
 import { v4 as UUID } from 'uuid';
 
-import ProductItem from '../../components/ProductItem';
 import ProductInput from '../../components/ProductInput';
 
 export default function RegisterScreen() {

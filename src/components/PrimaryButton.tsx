@@ -13,6 +13,7 @@ export default PrimaryButton;
 const styles = StyleSheet.create({
     button: {
         flex: 1,
+        height: 44,
         padding: 10,
         borderRadius: 5,
         backgroundColor: '#606060',

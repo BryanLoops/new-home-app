@@ -108,16 +108,18 @@ function ProductInput(props) {
         onRequestClose={() => setModalVisible(false)}
       >
         <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text>Confirmar registro?</Text>
-            <View style={[styles.buttonContainer, {width: 240}]}>
+          <View style={{ flex: 1, justifyContent: 'flex-end'}}>
+
+            <Text style={{fontSize: 20, color: 'white'}}>Confirmar registro?</Text>
+          </View>
+            <View style={[styles.modalButtonContainer, { flex: 1, justifyContent: 'flex-start', width: 240}]}>
               <PrimaryButton title="Confirmar" onPress={addProductHandler} />
               <PrimaryButton title="Cancelar" onPress={() => {
                 // Adicionar lógica de registro
                 setModalVisible(false)
               }} />
             </View>
-          </View>
+          
         </View>
       </Modal>
       <View style={styles.buttonContainer}>
@@ -162,8 +164,8 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    justifyContent: 'space-around',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     flexDirection: 'row',
+    position: "relative"
   },
 });
